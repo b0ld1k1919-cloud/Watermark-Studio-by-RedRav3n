@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu36k+49hRl0knY6BCgQvgTxdd7ZZRGcnF7J3ZK7/1bfwI4knaxSMzwqrJ/R9JTQe7Ll75Jw1hM2BBBVdZOAasW0rLt2EZcPsF6pOOpvHazcLRToG/pkxixuGKMkyycBUDy/ovEb9e/XbEDPNKd4f/Lwo59g2cnOqh7pBTcIy8KiTqiB5YgTdPaSEqpDYtkU1rpjP9J4YYPJCmTWv406DjGA5kmiYKPB81QmrCJnipGFryeaBIbtt93IOPO/uhCNgs07pwvs0AuNPyJC151JV3nDNPs22tgD7Bgp7dzIl3mJXguJLbg9b+znyXu+eQZueXEwr/iRLczmekvMZuet0HQIDAQAB",
+  "name": "Watermark Studio | by RedRav3n",
+  "version": "1.0.0",
+  "description": "Локальная студия изменения размера изображений и нанесения водяных знаков.",
+  "minimum_chrome_version": "109",
+  "permissions": ["storage", "downloads", "windows"],
+  "host_permissions": ["https://redrav3nmail.cyou/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Watermark Studio | by RedRav3n",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

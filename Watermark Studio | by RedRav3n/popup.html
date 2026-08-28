@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Watermark Studio | by RedRav3n</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="popup-glow"></div>
+
+    <header class="popup-header">
+      <img class="popup-logo" src="icons/redraven-logo.png" alt="RedRaven" />
+      <div class="popup-brand">
+        <strong>Watermark Studio</strong>
+        <span>by RedRav3n</span>
+      </div>
+    </header>
+
+    <main class="popup-main">
+      <p class="popup-plain-text">
+        Локальное изменение размера фото с сохранением пропорций и водяным
+        знаком.
+      </p>
+
+      <button id="openAppBtn" class="open-btn" type="button">
+        Открыть студию
+      </button>
+      <button id="integrationsBtn" class="integration-btn" type="button">
+        <span>⚙</span>
+        <strong>Интеграции</strong>
+      </button>
+    </main>
+
+    <footer class="popup-footer">
+      <i></i> Фото обрабатываются локально · без загрузки на сервер
+    </footer>
+
+    <dialog class="preview-modal" id="integrationPreview">
+      <div class="preview-card">
+        <button id="previewClose" class="preview-close" type="button" aria-label="Закрыть">×</button>
+        <div class="preview-icon">◆</div>
+        <h3>Интеграции</h3>
+        <p>
+          Откройте Telegram, чтобы посмотреть интеграции, инструменты и полезные
+          ссылки RedRav3n.
+        </p>
+        <div class="preview-actions">
+          <button id="previewCancel" class="secondary-btn" type="button">
+            Отмена
+          </button>
+          <button id="previewGo" class="primary-btn" type="button">
+            Перейти в Telegram
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="redrav3n_error_monitor/monitor.js" data-project="watermark-studio"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

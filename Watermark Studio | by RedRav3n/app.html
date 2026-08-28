@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Watermark Studio | by RedRav3n</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-glow glow-left"></div>
+    <div class="background-glow glow-right"></div>
+
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <img
+            class="redraven-logo sidebar-logo"
+            src="icons/redraven-logo.png"
+            alt="RedRaven"
+          />
+          <div><strong>Watermark Studio</strong><span>by RedRav3n</span></div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item active" data-view="studio" type="button">
+            <span class="nav-icon">◆</span>
+            <span class="nav-copy">
+              <strong>Студия</strong>
+              <small>Фото и водяной знак</small>
+            </span>
+          </button>
+          <button class="nav-item" data-view="configs" type="button">
+            <span class="nav-icon">▣</span>
+            <span class="nav-copy">
+              <strong>Конфигурации</strong>
+              <small>Импорт и экспорт</small>
+            </span>
+          </button>
+        </nav>
+
+        <div class="sidebar-actions">
+          <button
+            id="socialIntegrations"
+            class="integration-social-btn"
+            type="button"
+          >
+            <span>⚙</span><strong>Интеграции</strong>
+          </button>
+        </div>
+      </aside>
+
+      <section class="main-content">
+        <header class="topbar">
+          <div>
+            <span class="eyebrow">Watermark Studio | by RedRav3n</span>
+            <h1 id="pageTitle">Студия</h1>
+          </div>
+          <div class="top-actions">
+            <label class="top-select">
+              <span>Конфигурация</span>
+              <select id="configSelect" class="input"></select>
+            </label>
+            <button id="downloadBtn" class="primary" type="button" disabled>
+              Скачать фото
+            </button>
+          </div>
+        </header>
+
+        <section id="studioView" class="view active">
+          <div class="quick-bar">
+            <div>
+              <span class="muted-label">Активная конфигурация</span>
+              <strong id="activeConfigName">Telegram</strong>
+            </div>
+            <div>
+              <span class="muted-label">Итоговый размер</span>
+              <strong id="outputSize">Нет фото</strong>
+            </div>
+            <div class="quick-actions">
+              <button id="newConfigBtn" class="secondary" type="button">
+                Новая
+              </button>
+              <button id="bulkConfigBtn" class="secondary" type="button">
+                Создать несколько
+              </button>
+              <button id="saveConfigBtn" class="primary" type="button">
+                Сохранить
+              </button>
+            </div>
+          </div>
+
+          <div class="studio-grid">
+            <section class="workspace-panel">
+              <label id="dropZone" class="file-picker large" for="imageInput">
+                <input id="imageInput" type="file" accept="image/*" />
+                <span class="file-picker-icon">⇧</span>
+                <strong id="imageLabel">Выберите или перетащите фото</strong>
+                <small>JPG, PNG, WebP. Обработка только на устройстве.</small>
+              </label>
+
+              <div class="preview-wrap">
+                <canvas id="previewCanvas"></canvas>
+                <div id="canvasEmpty" class="canvas-empty">
+                  <div class="empty-icon">◆</div>
+                  <h2>Предпросмотр появится здесь</h2>
+                  <p>
+                    Загрузите фото и настройте размер, прозрачность и позицию
+                    водяного знака.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <aside class="settings-panel">
+              <div class="panel-heading">
+                <div>
+                  <span class="eyebrow">Настройки</span>
+                  <h2>Конфигурация</h2>
+                </div>
+              </div>
+
+              <section class="settings-group">
+                <h3>Основное</h3>
+                <label for="configName">Название</label>
+                <input id="configName" class="input" placeholder="Telegram" />
+
+                <div class="control-grid two">
+                  <div>
+                    <label for="maxWidth">Ширина, px</label>
+                    <input
+                      id="maxWidth"
+                      class="input"
+                      type="number"
+                      min="1"
+                      step="1"
+                    />
+                  </div>
+                  <div>
+                    <label for="maxHeight">Высота, px</label>
+                    <input
+                      id="maxHeight"
+                      class="input"
+                      type="number"
+                      min="1"
+                      step="1"
+                    />
+                  </div>
+                </div>
+
+                <label class="toggle-row">
+                  <input id="allowUpscale" type="checkbox" />
+                  <span>Увеличивать маленькие фото</span>
+                </label>
+              </section>
+
+              <section class="settings-group">
+                <h3>Водяной знак</h3>
+                <label for="watermarkType">Тип</label>
+                <select id="watermarkType" class="input">
+                  <option value="text">Текст</option>
+                  <option value="image">Картинка</option>
+                  <option value="both">Текст + картинка</option>
+                </select>
+
+                <div id="textWatermarkControls">
+                  <label for="watermarkText">Текст</label>
+                  <input
+                    id="watermarkText"
+                    class="input"
+                    placeholder="@RedRav3n"
+                  />
+                </div>
+
+                <div id="imageWatermarkControls" class="image-controls">
+                  <label
+                    class="file-button secondary"
+                    for="watermarkImageInput"
+                  >
+                    Выбрать картинку
+                    <input
+                      id="watermarkImageInput"
+                      type="file"
+                      accept="image/*"
+                    />
+                  </label>
+                  <div id="watermarkImageName" class="file-name">
+                    Картинка не выбрана
+                  </div>
+                  <button
+                    id="removeWatermarkImageBtn"
+                    class="secondary"
+                    type="button"
+                  >
+                    Убрать картинку
+                  </button>
+                </div>
+
+                <div class="control-grid two">
+                  <div id="textSizeControl">
+                    <label for="fontSize">Размер текста</label>
+                    <input
+                      id="fontSize"
+                      class="input"
+                      type="number"
+                      min="8"
+                      step="1"
+                    />
+                  </div>
+                  <div id="imageSizeControl">
+                    <label for="imageSize">Размер картинки</label>
+                    <input
+                      id="imageSize"
+                      class="input"
+                      type="number"
+                      min="8"
+                      step="1"
+                    />
+                  </div>
+                </div>
+
+                <div class="control-grid two">
+                  <div>
+                    <label for="opacity">Прозрачность, %</label>
+                    <input
+                      id="opacity"
+                      class="input"
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="1"
+                    />
+                  </div>
+                  <div>
+                    <label for="rotation">Поворот</label>
+                    <input
+                      id="rotation"
+                      class="input"
+                      type="number"
+                      min="-45"
+                      max="45"
+                      step="1"
+                    />
+                  </div>
+                </div>
+
+                <div class="control-grid two">
+                  <div>
+                    <label for="position">Позиция</label>
+                    <select id="position" class="input">
+                      <option value="bottom-right">Снизу справа</option>
+                      <option value="bottom-left">Снизу слева</option>
+                      <option value="top-right">Сверху справа</option>
+                      <option value="top-left">Сверху слева</option>
+                      <option value="center">По центру</option>
+                      <option value="tile">Плиткой</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="margin">Отступ</label>
+                    <input
+                      id="margin"
+                      class="input"
+                      type="number"
+                      min="0"
+                      step="1"
+                    />
+                  </div>
+                </div>
+
+                <div id="textColorControl">
+                  <label for="color">Цвет текста</label>
+                  <input id="color" class="input color-input" type="color" />
+                </div>
+              </section>
+
+              <section class="settings-group">
+                <h3>Скачивание</h3>
+                <div class="control-grid two">
+                  <div>
+                    <label for="format">Формат</label>
+                    <select id="format" class="input">
+                      <option value="image/jpeg">JPG</option>
+                      <option value="image/png">PNG</option>
+                      <option value="image/webp">WebP</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="quality">Качество</label>
+                    <input
+                      id="quality"
+                      class="input"
+                      type="number"
+                      min="10"
+                      max="100"
+                      step="1"
+                    />
+                  </div>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        <section id="configsView" class="view">
+          <div class="data-heading">
+            <div>
+              <span class="eyebrow">Обмен настройками</span>
+              <h2>Конфигурации</h2>
+            </div>
+            <p>
+              Конфигурацию можно скачать JSON-файлом, отправить другу, а он
+              импортирует её в расширении.
+            </p>
+          </div>
+
+          <div class="config-actions">
+            <button id="newConfigBtnAlt" class="secondary" type="button">
+              Новая
+            </button>
+            <button id="bulkConfigBtnAlt" class="secondary" type="button">
+              Создать несколько
+            </button>
+            <button id="exportConfigBtn" class="primary" type="button">
+              Скачать конфигурацию
+            </button>
+            <label class="secondary import-label" for="importConfigInput">
+              Импортировать
+              <input
+                id="importConfigInput"
+                type="file"
+                accept=".json,application/json"
+              />
+            </label>
+          </div>
+
+          <div id="configsGrid" class="data-grid"></div>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="socialDialog" class="dialog">
+      <div class="dialog-card compact">
+        <button class="dialog-close" data-close-social type="button" aria-label="Закрыть">×</button>
+        <span class="eyebrow">Telegram</span>
+        <h2>Интеграции</h2>
+        <p class="dialog-note">
+          Откройте Telegram, чтобы посмотреть интеграции, инструменты и полезные
+          ссылки RedRav3n.
+        </p>
+        <div class="dialog-actions">
+          <button class="secondary" data-close-social type="button">
+            Отмена
+          </button>
+          <button id="telegramBtn" class="primary" type="button">
+            Перейти в Telegram
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="bulkConfigDialog" class="dialog">
+      <form id="bulkConfigForm" class="dialog-card compact">
+        <button class="dialog-close" data-close-bulk type="button" aria-label="Закрыть">×</button>
+        <span class="eyebrow">Конфигурации</span>
+        <h2>Создать несколько</h2>
+        <p class="dialog-note">
+          Введите названия по одному в строке. Для каждой будет скопированы
+          текущие настройки.
+        </p>
+        <label for="bulkConfigNames">Названия</label>
+        <textarea id="bulkConfigNames" class="input textarea" rows="6">
+Telegram
+Instagram
+FunPay</textarea>
+        <div class="dialog-actions">
+          <button class="secondary" data-close-bulk type="button">
+            Отмена
+          </button>
+          <button class="primary" type="submit">Создать</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="redrav3n_error_monitor/monitor.js" data-project="watermark-studio"></script>
+    <script src="canvas-renderer.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
