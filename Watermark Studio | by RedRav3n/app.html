@@ -15,6 +15,7 @@
         <nav class="nav">
           <button class="nav-item active" data-view="studio" type="button"><span class="nav-icon">◆</span><span class="nav-copy"><strong>Студия</strong><small>Фото и водяной знак</small></span></button>
           <button class="nav-item" data-view="configs" type="button"><span class="nav-icon">▣</span><span class="nav-copy"><strong>Конфигурации</strong><small>Импорт и экспорт</small></span></button>
+          <button class="nav-item" data-view="settings" type="button"><span class="nav-icon">⚙</span><span class="nav-copy"><strong>Настройки</strong><small>Интерфейс и язык</small></span></button>
         </nav>
         <div class="sidebar-actions"><button id="socialIntegrations" class="integration-social-btn" type="button"><span>⚙</span><strong>Интеграции</strong></button></div>
       </aside>
@@ -32,12 +33,33 @@
           </div>
         </section>
         <section id="configsView" class="view"><div class="data-heading"><div><span class="eyebrow">Обмен настройками</span><h2>Конфигурации</h2></div><p>Конфигурацию можно скачать JSON-файлом, отправить другу, а он импортирует её в расширении.</p></div><div class="config-actions"><button id="newConfigBtnAlt" class="secondary" type="button">Новая</button><button id="bulkConfigBtnAlt" class="secondary" type="button">Создать несколько</button><button id="exportConfigBtn" class="primary" type="button">Скачать конфигурацию</button><label class="secondary import-label" for="importConfigInput">Импортировать<input id="importConfigInput" type="file" accept=".json,application/json" /></label></div><div id="configsGrid" class="data-grid"></div></section>
+        <section id="settingsView" class="view rr-settings-view">
+          <div class="rr-settings-heading"><span class="eyebrow">REDRAV3N UI</span><h2>Настройки</h2><p>Настройте Watermark Studio так же, как интерфейс RedRav3n Mail.</p></div>
+          <div class="rr-settings-layout">
+            <section class="rr-settings-card">
+              <div class="rr-settings-card-head"><div><span class="eyebrow">Интерфейс</span><h3>Внешний вид</h3></div></div>
+              <div class="rr-settings-row"><div><strong>Акцентный цвет</strong><small>Фирменный красный или дополнительная палитра.</small></div><select id="uiAccent" class="input rr-settings-control"><option value="red">Красный RedRav3n</option><option value="blue">Синий</option><option value="green">Зелёный</option><option value="violet">Фиолетовый</option></select></div>
+              <div class="rr-settings-row"><div><strong>Масштаб интерфейса</strong><small>Размер элементов и текста.</small></div><select id="uiScale" class="input rr-settings-control"><option value="90">90%</option><option value="100">100%</option><option value="110">110%</option><option value="120">120%</option></select></div>
+              <label class="rr-settings-row rr-switch-row"><div><strong>Компактный режим</strong><small>Уменьшает отступы и высоту элементов.</small></div><input id="uiCompact" type="checkbox" /></label>
+              <label class="rr-settings-row rr-switch-row"><div><strong>Фоновое свечение</strong><small>Показывать мягкое фирменное свечение.</small></div><input id="uiGlow" type="checkbox" /></label>
+            </section>
+            <section class="rr-settings-card">
+              <div class="rr-settings-card-head"><div><span class="eyebrow">Движение</span><h3>Анимации</h3></div></div>
+              <div class="rr-settings-row"><div><strong>Режим анимаций</strong><small>Используются короткие переходы RedRav3n Mail и плавный вход панелей.</small></div><select id="uiMotion" class="input rr-settings-control"><option value="full">Полные</option><option value="reduced">Уменьшенные</option><option value="off">Выключены</option></select></div>
+            </section>
+            <section class="rr-settings-card">
+              <div class="rr-settings-card-head"><div><span class="eyebrow">Локализация</span><h3>Язык</h3></div></div>
+              <div class="rr-settings-row"><div><strong>Язык интерфейса</strong><small>Перевод применяется ко всему интерфейсу расширения.</small></div><select id="uiLanguage" class="input rr-settings-control"><option value="ru">Русский</option><option value="uk">Українська</option><option value="en">English</option></select></div>
+              <p class="rr-settings-note">Настройки сохраняются автоматически на этом устройстве.</p>
+            </section>
+          </div>
+        </section>
       </section>
     </main>
     <dialog id="socialDialog" class="dialog"><div class="dialog-card compact"><button class="dialog-close" data-close-social type="button" aria-label="Закрыть">×</button><span class="eyebrow">Telegram</span><h2>Интеграции</h2><p class="dialog-note">Откройте Telegram, чтобы посмотреть интеграции, инструменты и полезные ссылки RedRav3n.</p><div class="dialog-actions"><button class="secondary" data-close-social type="button">Отмена</button><button id="telegramBtn" class="primary" type="button">Перейти в Telegram</button></div></div></dialog>
     <dialog id="bulkConfigDialog" class="dialog"><form id="bulkConfigForm" class="dialog-card compact"><button class="dialog-close" data-close-bulk type="button" aria-label="Закрыть">×</button><span class="eyebrow">Конфигурации</span><h2>Создать несколько</h2><p class="dialog-note">Введите названия по одному в строке. Для каждой будут скопированы текущие настройки.</p><label for="bulkConfigNames">Названия</label><textarea id="bulkConfigNames" class="input textarea" rows="6">Telegram
 Instagram
 FunPay</textarea><div class="dialog-actions"><button class="secondary" data-close-bulk type="button">Отмена</button><button class="primary" type="submit">Создать</button></div></form></dialog>
-    <script src="redrav3n_error_monitor/monitor.js" data-project="watermark-studio"></script><script src="canvas-renderer.js"></script><script src="app.js"></script>
+    <script src="redrav3n_error_monitor/monitor.js" data-project="watermark-studio"></script><script src="canvas-renderer.js"></script><script src="app.js"></script><script src="ui-settings.js"></script>
   </body>
 </html>
